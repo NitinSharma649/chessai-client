@@ -1,6 +1,6 @@
 import io from 'socket.io-client'
 
-const URL = 'http://localhost:50000'
+const URL = 'https://chessai-fn9l.onrender.com'
 
 // register preliminary event listeners here:
 const socket = io(URL)
