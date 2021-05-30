@@ -1,6 +1,6 @@
 import io from 'socket.io-client'
 
-const URL = 'https://chessai-fn9l.onrender.com'
+const URL = process.env.REACT_APP_API_BASE_URL
 
 // register preliminary event listeners here:
 const socket = io(URL)
