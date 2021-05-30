@@ -98,7 +98,7 @@ function PVC({gameId, color, children, setGameContext, whenPieceMoved, onGameOve
 
 const OneToOneChess = (props) => {
 
-    const domainName = "http://localhost:3000"
+    const domainName = "https://chessai-fn9l.onrender.com"
     const color = React.useContext(ColorContext)
     const {gameid} = useParams()
     const [opponentSocketId, setOpponentSocketId] = React.useState('')
