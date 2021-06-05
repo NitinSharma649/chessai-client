@@ -1,6 +1,6 @@
 import io from 'socket.io-client'
 
-const URL = process.env.REACT_APP_API_BASE_URL
+const URL = process.env.REACT_APP_API_BASE_URL || "https://chessai-server.herokuapp.com"
 
 // register preliminary event listeners here:
 const socket = io(URL)
