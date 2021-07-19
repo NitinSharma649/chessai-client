@@ -22,7 +22,9 @@
     "redux": "^4.1.0",
     "redux-persist": "^6.0.0",
     "roughjs": "^4.3.1",
+    "simple-peer": "^9.11.0",
     "socket.io-client": "^4.1.2",
+    "styled-components": "^5.3.0",
     "uuid": "^8.3.2",
     "web-vitals": "^1.1.1"
   },

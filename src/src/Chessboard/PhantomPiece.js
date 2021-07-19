@@ -1,7 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import PropTypes from 'prop-types';
 
-import { renderChessPiece } from './Piece';
+import {renderChessPiece} from './Piece';
 
 PhantomPiece.propTypes = {
   width: PropTypes.number,

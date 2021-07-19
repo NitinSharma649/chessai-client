@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import Chess from 'chess.js';
 import Chessboard from "../src/Chessboard";
 import MoveCalculation from "../models/MoveCalculation";

@@ -9,21 +9,15 @@ import RoutesList from "../RoutesList";
 import JoinGame from "./joingame";
 import JoinRoom from "./joinroom";
 import {ColorContext} from "../context/colorcontext";
-import axios from '../connection/axios';
 import {useDispatch, useSelector} from "react-redux";
-import userReducer from "../redux/reducers/userReducer";
 import {LOGOUT} from "../redux/action_types/action_types";
 
 export default function WelcomeScreen() {
-    const [didRedirect, setDidRedirect] = useState(false)
-    const [userName, setUserName] = useState('')
-    const {signedIn, username} = useSelector(state=>({
+    const {signedIn, username, didRedirect} = useSelector(state=>({
         signedIn: state.userReducer.token,
-        username: state.userReducer.username
+        username: state.userReducer.username,
+        didRedirect: state.userReducer.didRedirect
     }));
-    const playerDidRedirect = React.useCallback(() => {
-        setDidRedirect(true)
-    }, []);
     const dispatch = useDispatch();
 
     function logout(){
@@ -32,11 +26,7 @@ export default function WelcomeScreen() {
         })
     }
 
-    const playerDidNotRedirect = React.useCallback(() => {
-        setDidRedirect(false)
-    }, []);
-
-
+    console.log(process.env)
     return (
         <div style={{
             width: '100%',
@@ -47,9 +37,7 @@ export default function WelcomeScreen() {
             justifyContent: 'center'
         }}>
             <ColorContext.Provider value={{
-                didRedirect: didRedirect,
-                playerDidRedirect: playerDidRedirect,
-                playerDidNotRedirect: playerDidNotRedirect
+                didRedirect: didRedirect
             }}>
                 <BrowserRouter>
                     <div className="App"
@@ -127,6 +115,7 @@ function Route(props){
         userid: state.userReducer.userid,
         token: state.userReducer.token,
     }))
+    console.log(token)
     const redirectAfter = window.location.href;
     const history = useHistory();
     if(props.private){
@@ -139,7 +128,7 @@ function Route(props){
         if(token){
             const redirection = getQueryParam("redir");
             const gameId = redirection.split('/').reverse()[0];
-            if(gameId) history.push(`/game/${gameId}`);
+            if(gameId && gameId != 'playgame') history.push(`/game/${gameId}`);
             else return <Redirect to={RoutesList.playgame} />;
             // if(redirection) window.location.href = redirection;
         }

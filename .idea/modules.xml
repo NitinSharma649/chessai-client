@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/chessai-client.iml" filepath="$PROJECT_DIR$/.idea/chessai-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../chessai-server/.idea/chessai-server.iml" filepath="$PROJECT_DIR$/../chessai-server/.idea/chessai-server.iml" />
     </modules>
   </component>
 </project>

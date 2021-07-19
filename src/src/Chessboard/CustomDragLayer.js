@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { DragLayer } from 'react-dnd';
+import {DragLayer} from 'react-dnd';
 
-import { renderChessPiece } from './Piece';
+import {renderChessPiece} from './Piece';
 
 class CustomDragLayer extends Component {
   static propTypes = {

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 import WithMoveValidation from './integrations/WithMoveValidation';
 import PlayRandomMoveEngine from './integrations/PlayRandomMoveEngine';

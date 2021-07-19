@@ -1,4 +1,4 @@
-import { createContext } from 'react'
+import {createContext} from 'react'
 import Chess from 'chess.js';
 
 export const ColorContext = createContext({

@@ -1,4 +1,5 @@
 import Chess from 'chess.js';
+
 const $ = window.$;
 
 export default function MoveCalculation(board = '', game = new Chess(), onGameOver) {

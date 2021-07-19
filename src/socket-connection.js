@@ -1,6 +1,6 @@
 import io from 'socket.io-client'
 
-const URL = 'http://localhost:50000'
+const URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:50000'
 
 // register preliminary event listeners here:
 const socket = io(URL)

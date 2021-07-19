@@ -1,18 +1,13 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Board from './Board';
 import PropTypes from 'prop-types';
 import isEqual from 'lodash.isequal';
-import { DragDropContext } from 'react-dnd';
+import {DragDropContext} from 'react-dnd';
 import MultiBackend from 'react-dnd-multi-backend';
 import HTML5toTouch from 'react-dnd-multi-backend/lib/HTML5toTouch';
 
 import SparePieces from './SparePieces';
-import {
-  fenToObj,
-  validFen,
-  validPositionObject,
-  constructPositionAttributes
-} from './helpers';
+import {constructPositionAttributes, fenToObj, validFen, validPositionObject} from './helpers';
 import CustomDragLayer from './CustomDragLayer';
 import defaultPieces from './svg/chesspieces/standard';
 import ErrorBoundary from './ErrorBoundary';

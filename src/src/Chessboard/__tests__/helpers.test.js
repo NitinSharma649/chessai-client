@@ -1,7 +1,7 @@
 import isEqual from 'lodash.isequal';
 import diff from 'deep-diff';
 
-import { fenToObj, validPositionObject, validFen } from '../helpers';
+import {fenToObj, validFen, validPositionObject} from '../helpers';
 
 test('converts FEN string to position object', () => {
   const fen = '8/8/4k3/4P3/4K3/8/8/8 w - -';

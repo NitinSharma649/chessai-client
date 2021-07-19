@@ -1,7 +1,7 @@
 import React from 'react'
 import JoinGame from './joingame'
 import OneToOneChess from "./OneToOneChess";
-import Chessboard from "../src/Chessboard";
+import {connect} from "react-redux";
 
 /**
  * Onboard is where we create the game room.
@@ -11,7 +11,6 @@ class JoinRoom extends React.Component {
     state = {
         didGetUserName: false,
         inputText: "",
-        didRedirect: true
     }
 
     constructor(props) {
@@ -25,10 +24,10 @@ class JoinRoom extends React.Component {
 
         return (<React.Fragment>
             {
-                this.state.didGetUserName ?
+                this.props.didRedirect ?
                     <React.Fragment>
                         <JoinGame userName = {'Open'} isCreator = {false}/>
-                        <OneToOneChess user = {'Open'}/>
+                        <OneToOneChess userName = {'Open'}/>
                     </React.Fragment>
                     : this.setState({
                         didGetUserName: true
@@ -38,4 +37,9 @@ class JoinRoom extends React.Component {
     }
 }
 
-export default JoinRoom
+const mapStateToProps = state => ({
+    username: state.userReducer.username,
+    didRedirect: state.userReducer.username
+})
+
+export default connect(mapStateToProps, null)(JoinRoom)

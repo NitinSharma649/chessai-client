@@ -1,14 +1,15 @@
-import Chessboard from "../src/Chessboard";
-import {useEffect, useReducer, useState} from "react";
+import React, {useState} from "react";
 import axios from "../connection/axios";
 import {useDispatch} from "react-redux";
 import {LOGIN} from "../redux/action_types/action_types";
+import {ColorContext} from "../context/colorcontext";
 
 export default function Login() {
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
+    const color = React.useContext(ColorContext)
 
     async function onLogin(e) {
         e.preventDefault();
@@ -19,6 +20,7 @@ export default function Login() {
             }).then(r=>r.data)
                 .then(r=>{
                     if(r.token && r.userId && r.username){
+                        console.log(r)
                         dispatch({
                             type: LOGIN,
                             payload: r

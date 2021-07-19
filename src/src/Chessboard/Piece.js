@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { DragSource } from 'react-dnd';
+import React, {Component} from 'react';
+import {DragSource} from 'react-dnd';
 import PropTypes from 'prop-types';
-import { getEmptyImage } from 'react-dnd-html5-backend';
+import {getEmptyImage} from 'react-dnd-html5-backend';
 
-import { ItemTypes } from './helpers';
+import {ItemTypes} from './helpers';
 
 /* eslint react/prop-types: 0 */
 export const renderChessPiece = ({

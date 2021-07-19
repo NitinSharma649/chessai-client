@@ -3,7 +3,7 @@ import React from 'react';
 import Chessboard from '../Chessboard';
 import elvis from '../img/elvis.png';
 import lebronJames from '../img/kingJames.png';
-import { roughSquare } from '../customRough';
+import {roughSquare} from '../customRough';
 
 /* eslint react/display-name: 0 */
 /* eslint react/prop-types: 0 */

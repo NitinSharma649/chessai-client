@@ -1,4 +1,4 @@
-import React, {Component, useState} from "react";
+import React, {useState} from "react";
 import {useDispatch} from "react-redux";
 import axios from "../connection/axios";
 import {Link, Redirect, useHistory} from "react-router-dom";

@@ -1,19 +1,39 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import OnevsOne from '../assets/images/1v1.jpg';
 import VsComputer from '../assets/images/vsComputer.jpg';
-import {Link, Redirect, useParams} from "react-router-dom";
+import {Link, Redirect, useHistory} from "react-router-dom";
 import RoutesList from "../RoutesList";
 import {socket} from "../socket-connection";
 import * as uuid from 'uuid'
-import {ColorContext} from "../context/colorcontext";
-import Chess from "chess.js";
+import {useDispatch, useSelector} from "react-redux";
+import {PLAY_GAME, SET_COLOR, SET_DID_REDIRECT} from "../redux/action_types/action_types";
 
-function PlayGameInner(props) {
-    console.log(props)
-    const [didUserName, setDidUserName] = useState(false);
+
+function PlayGame(props) {
     const [gameId, setGameId] = useState();
+    const history = useHistory();
+    const dispatch = useDispatch();
+    const {username} = useSelector(state => ({
+        username: state.userReducer.username,
+    }));
+
+    console.log("testsdf")
+    // console.log(this.props)
 
     const send = () => {
+        dispatch({
+            type: SET_COLOR,
+            payload: {
+                color: "w"
+            }
+        });
+
+        dispatch({
+            type: SET_DID_REDIRECT,
+            payload: {
+                didRedirect: true
+            }
+        });
         /**
          * This method should create a new room in the '/' namespace
          * with a unique identifier.
@@ -27,18 +47,14 @@ function PlayGameInner(props) {
 
         // emit an event to the server to create a new room
         socket.emit('createNewGame', newGameRoomId)
+
         console.log(1)
+        history.push(`/game/${newGameRoomId}`);
     }
 
+
     return (<React.Fragment>
-        {
-            didUserName ?
-                <Redirect to={"/game/" + gameId}>
-                    <button className="btn btn-success"
-                            style={{marginLeft: String((window.innerWidth / 2) - 60) + "px", width: "120px"}}>Start Game
-                    </button>
-                </Redirect>
-                :
+            {
                 <div style={{backgroundColor: 'white', padding: 20, borderRadius: 10}}>
                     <h1 style={{textAlign: 'center'}}>How you want to play?</h1>
                     <div style={{display: 'flex'}}>
@@ -51,15 +67,10 @@ function PlayGameInner(props) {
                                 {/*    <a className="btn btn-primary">Play Online</a>*/}
                                 {/*</Link>*/}
                                 <button className="btn btn-primary"
-                                    onClick = {() => {
-                                        // When the 'Submit' button gets pressed from the username screen,
-                                        // We should send a request to the server to create a new room with
-                                        // the uuid we generate here.
-                                        props.didRedirect()
-                                        props.setUserName("tset")
-                                        setDidUserName(true)
-                                        send()
-                                    }}>Play Now</button>
+                                        onClick={() => {
+                                            send()
+                                        }}>Play Now
+                                </button>
                             </div>
                         </div>
                         <div className="card" style={{width: "18rem"}}>
@@ -74,17 +85,9 @@ function PlayGameInner(props) {
                         </div>
                     </div>
                 </div>
-        }
+            }
         </React.Fragment>
     );
-}
-
-
-const PlayGame = (props) => {
-    const color = React.useContext(ColorContext)
-    console.log(color)
-    console.log("start")
-    return <PlayGameInner didRedirect = {color.playerDidRedirect} setUserName = {props.setUserName}/>
 }
 
 export default PlayGame

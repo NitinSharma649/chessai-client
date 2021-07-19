@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-import { COLUMNS } from './helpers';
+import {COLUMNS} from './helpers';
 
 class Row extends Component {
   static propTypes = {
