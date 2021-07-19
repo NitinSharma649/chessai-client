@@ -8,13 +8,19 @@ import {useDispatch, useSelector} from "react-redux";
 import {SET_COLOR} from "../redux/action_types/action_types";
 import VideoChatApp from "../connection/videochat";
 
-function PVC({gameId, color, children, setGameContext, whenPieceMoved, onGameOver}) {
+function PVC({gameId, color, children, setGameContext, whenPieceMoved, onGameOver, socketId}) {
     const [fen, setFen] = useState('start');
     const [squareStyles, setSquareStyles] = useState({});
     const [pieceSquare, setPieceSquare] = useState('');
     const [game, setGame] = useState(new Chess());
     const [currentPosition, setCurrentPosition] = useState(() => {
     });
+
+    const {username, userColor, userId} = useSelector(state => ({
+        username: state.userReducer.username,
+        userColor: state.userReducer.color,
+        userId: state.userReducer.userid
+    }));
 
     useEffect(() => {
         // !color ?: game.setTurn("w")
@@ -39,6 +45,18 @@ function PVC({gameId, color, children, setGameContext, whenPieceMoved, onGameOve
             }
         })
     }, []);
+
+    useEffect(() => {
+        if(userId && gameId && userColor && socketId && username) {
+            socket.emit("gameHistory", {
+                userId,
+                gameId,
+                color: userColor,
+                socketId,
+                username
+            });
+        }
+    }, [userId, gameId, userColor, socketId, username]);
 
     const onDrop = ({sourceSquare, targetSquare}) => {
 
@@ -201,6 +219,7 @@ const OneToOneChess = (props) => {
                              onGameOver={() => alert("Game Over!")}
                              gameId={gameid}
                              color={userColor == "w" ? true : false}
+                             socketId={socket.id}
                         />
                         <VideoChatApp
                             mySocketId={socket.id}
